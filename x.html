@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Tema Varyantları</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Variant 1: Classic Blue Admin Panel (Roboto) -->
+  <style id="variant1">
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --background-color: #f5f6fa;
+    }
+    body { 
+      background-color: var(--background-color); 
+      font-family: 'Roboto', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: white; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f8f9fa; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #27ae60; color: white; }
+    .status.pending { background-color: #f1c40f; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    /* Icon spacing */
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 2: Dark Mode Admin Panel (Open Sans) -->
+  <style id="variant2" disabled>
+    :root {
+      --primary-color: #1a1a1a;
+      --secondary-color: #0d6efd;
+      --accent-color: #dc3545;
+      --background-color: #121212;
+    }
+    body { 
+      background-color: var(--background-color); 
+      color: #e0e0e0; 
+      font-family: 'Open Sans', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: #e0e0e0; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #444; border-radius: 5px; width: 300px; background: #1a1a1a; color: #e0e0e0; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: #1f1f1f; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .card h3 { color: var(--secondary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--accent-color); }
+    .chart-container, .table-container { background: #1f1f1f; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+    th { background-color: #2a2a2a; color: var(--secondary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #28a745; color: white; }
+    .status.pending { background-color: #ffc107; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 3: Light Minimalistic Admin Panel (Lato) -->
+  <style id="variant3" disabled>
+    :root {
+      --primary-color: #333;
+      --secondary-color: #5dade2;
+      --accent-color: #e74c3c;
+      --background-color: #fff;
+    }
+    body { 
+      background-color: var(--background-color); 
+      color: var(--primary-color); 
+      font-family: 'Lato', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: #f0f0f0; color: var(--primary-color); padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); color: white; }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: #fafafa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: #fafafa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f8f9fa; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #27ae60; color: white; }
+    .status.pending { background-color: #f1c40f; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 4: Modern Gradient Admin Panel (Montserrat) -->
+  <style id="variant4" disabled>
+    :root {
+      --primary-color: #34495e;
+      --secondary-color: #8e44ad;
+      --accent-color: #e74c3c;
+      --background-color: #ecf0f1;
+    }
+    body { 
+      background-color: var(--background-color); 
+      font-family: 'Montserrat', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--accent-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f8f9fa; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #27ae60; color: white; }
+    .status.pending { background-color: #f1c40f; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 5: Material Design Admin Panel (Poppins) -->
+  <style id="variant5" disabled>
+    :root {
+      --primary-color: #2196F3;
+      --secondary-color: #0D47A1;
+      --accent-color: #FF5252;
+      --background-color: #FAFAFA;
+    }
+    body { 
+      background-color: var(--background-color); 
+      font-family: 'Poppins', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: white; padding: 20px; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
+    .logo { font-size: 24px; font-weight: 500; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px 16px; margin: 5px 0; cursor: pointer; border-radius: 4px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: none; border-radius: 4px; width: 300px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+    th { background-color: #f5f5f5; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 12px; font-size: 14px; }
+    .status.active { background-color: #4CAF50; color: white; }
+    .status.pending { background-color: #FFC107; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 6: Elegant Grey Admin Panel (Merriweather) -->
+  <style id="variant6" disabled>
+    :root {
+      --primary-color: #444;
+      --secondary-color: #888;
+      --accent-color: #d9534f;
+      --background-color: #f7f7f7;
+    }
+    body { 
+      background-color: var(--background-color); 
+      color: var(--primary-color); 
+      font-family: 'Merriweather', serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: #2c2c2c; color: #f7f7f7; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #eee; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #5cb85c; color: white; }
+    .status.pending { background-color: #f0ad4e; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 7: Vibrant Color Admin Panel (Oswald) -->
+  <style id="variant7" disabled>
+    :root {
+      --primary-color: #9b59b6;
+      --secondary-color: #e67e22;
+      --accent-color: #e74c3c;
+      --background-color: #fdfefe;
+    }
+    body { 
+      background-color: var(--background-color); 
+      font-family: 'Oswald', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: white; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f8f9fa; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #27ae60; color: white; }
+    .status.pending { background-color: #f1c40f; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 8: Neon Dark Admin Panel (Raleway) -->
+  <style id="variant8" disabled>
+    :root {
+      --primary-color: #0f0f0f;
+      --secondary-color: #00e676;
+      --accent-color: #ff1744;
+      --background-color: #121212;
+    }
+    body { 
+      background-color: var(--background-color); 
+      color: #e0e0e0; 
+      font-family: 'Raleway', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: #e0e0e0; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #444; border-radius: 5px; width: 300px; background: #1f1f1f; color: #e0e0e0; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .card h3 { color: var(--secondary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--accent-color); }
+    .chart-container, .table-container { background: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+    th { background-color: #2a2a2a; color: var(--secondary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #00e676; color: white; }
+    .status.pending { background-color: #ffea00; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 9: Soft Pastel Admin Panel (Ubuntu) -->
+  <style id="variant9" disabled>
+    :root {
+      --primary-color: #6c5ce7;
+      --secondary-color: #00b894;
+      --accent-color: #ff7675;
+      --background-color: #f0f0f0;
+    }
+    body { 
+      background-color: var(--background-color); 
+      font-family: 'Ubuntu', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: white; padding: 20px; }
+    .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f8f9fa; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 15px; font-size: 14px; }
+    .status.active { background-color: #27ae60; color: white; }
+    .status.pending { background-color: #f1c40f; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+  <!-- Variant 10: Corporate Admin Panel (Roboto Condensed) -->
+  <style id="variant10" disabled>
+    :root {
+      --primary-color: #003366;
+      --secondary-color: #005599;
+      --accent-color: #cc0000;
+      --background-color: #eaeaea;
+    }
+    body { 
+      background-color: var(--background-color); 
+      font-family: 'Roboto Condensed', sans-serif; 
+    }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background-color: var(--primary-color); color: white; padding: 20px; }
+    .logo { font-size: 26px; font-weight: bold; margin-bottom: 30px; text-align: center; }
+    .menu-item { padding: 12px; margin: 5px 0; cursor: pointer; border-radius: 4px; transition: background-color 0.3s; }
+    .menu-item:hover, .menu-item.active { background-color: var(--secondary-color); }
+    .main-content { flex: 1; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .search-bar { padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 300px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .card { background: white; padding: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .card p { font-size: 24px; font-weight: bold; color: var(--secondary-color); }
+    .chart-container, .table-container { background: white; padding: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f0f0f0; color: var(--primary-color); }
+    .status { padding: 5px 10px; border-radius: 4px; font-size: 14px; }
+    .status.active { background-color: #4CAF50; color: white; }
+    .status.pending { background-color: #FFC107; color: white; }
+    .status.inactive { background-color: var(--accent-color); color: white; }
+    @media (max-width: 768px) {
+      .sidebar { width: 200px; padding: 15px; }
+      .search-bar { width: 200px; }
+    }
+    .menu-item i { margin-right: 10px; }
+  </style>
+  
+</head>
+<body>
+  <!-- Tema Seçici -->
+  <div style="padding: 10px; background: #ccc; text-align: center;">
+    <label for="themeSelector">Tema Seç:</label>
+    <select id="themeSelector">
+      <option value="1">Variant 1: Classic Blue (Roboto)</option>
+      <option value="2">Variant 2: Dark Mode (Open Sans)</option>
+      <option value="3">Variant 3: Light Minimalistic (Lato)</option>
+      <option value="4">Variant 4: Modern Gradient (Montserrat)</option>
+      <option value="5">Variant 5: Material Design (Poppins)</option>
+      <option value="6">Variant 6: Elegant Grey (Merriweather)</option>
+      <option value="7">Variant 7: Vibrant Color (Oswald)</option>
+      <option value="8">Variant 8: Neon Dark (Raleway)</option>
+      <option value="9">Variant 9: Soft Pastel (Ubuntu)</option>
+      <option value="10">Variant 10: Corporate (Roboto Condensed)</option>
+    </select>
+  </div>
+
+  <!-- Admin Panel Yapısı -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo"><i class="fas fa-user-cog"></i> AdminPanel</div>
+      <div class="menu-item active" tabindex="0">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </div>
+      <div class="menu-item" tabindex="0">
+        <i class="fas fa-users"></i> Kullanıcılar
+      </div>
+      <div class="menu-item" tabindex="0">
+        <i class="fas fa-box-open"></i> Ürünler
+      </div>
+      <div class="menu-item" tabindex="0">
+        <i class="fas fa-shopping-cart"></i> Siparişler
+      </div>
+      <div class="menu-item" tabindex="0">
+        <i class="fas fa-chart-line"></i> Raporlar
+      </div>
+      <div class="menu-item" tabindex="0">
+        <i class="fas fa-cog"></i> Ayarlar
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="header">
+        <h1>Dashboard</h1>
+        <input type="text" class="search-bar" placeholder="Ara..." aria-label="Ara">
+      </header>
+
+      <!-- Dashboard Kartları -->
+      <section class="dashboard-cards">
+        <div class="card">
+          <h3>Toplam Kullanıcı</h3>
+          <p>1,234</p>
+        </div>
+        <div class="card">
+          <h3>Aktif Siparişler</h3>
+          <p>56</p>
+        </div>
+        <div class="card">
+          <h3>Aylık Gelir</h3>
+          <p>₺45,678</p>
+        </div>
+        <div class="card">
+          <h3>Toplam Ürün</h3>
+          <p>890</p>
+        </div>
+      </section>
+
+      <!-- Grafik Bölümü -->
+      <section class="chart-container">
+        <h2>Satış İstatistikleri</h2>
+        <canvas id="salesChart"></canvas>
+      </section>
+
+      <!-- Tablo Bölümü -->
+      <section class="table-container">
+        <h2>Son Siparişler</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Sipariş ID</th>
+              <th>Müşteri</th>
+              <th>Ürün</th>
+              <th>Tutar</th>
+              <th>Durum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#12345</td>
+              <td>Ahmet Yılmaz</td>
+              <td>Akıllı Telefon</td>
+              <td>₺12,999</td>
+              <td><span class="status active">Aktif</span></td>
+            </tr>
+            <tr>
+              <td>#12346</td>
+              <td>Ayşe Demir</td>
+              <td>Laptop</td>
+              <td>₺15,499</td>
+              <td><span class="status pending">Beklemede</span></td>
+            </tr>
+            <tr>
+              <td>#12347</td>
+              <td>Mehmet Kaya</td>
+              <td>Tablet</td>
+              <td>₺4,999</td>
+              <td><span class="status inactive">İptal</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <script>
+    // Tema Varyantını uygula
+    function setThemeVariant(variantNumber) {
+      for (let i = 1; i <= 10; i++) {
+        const styleEl = document.getElementById('variant' + i);
+        if (styleEl && styleEl.sheet) {
+          styleEl.sheet.disabled = (i !== variantNumber);
+        }
+      }
+    }
+
+    // Varsayılan olarak Variant 1 aktif
+    setThemeVariant(1);
+
+    // Tema seçici değişim dinleyicisi
+    document.getElementById('themeSelector').addEventListener('change', function() {
+      const variantNumber = parseInt(this.value);
+      setThemeVariant(variantNumber);
+    });
+
+    // Chart.js Grafik Oluşturma
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran'],
+        datasets: [{
+          label: 'Aylık Satışlar',
+          data: [65, 59, 80, 81, 56, 55],
+          fill: false,
+          borderColor: '#3498db',
+          tension: 0.1,
+          pointBackgroundColor: '#3498db'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' },
+          title: { display: true, text: '6 Aylık Satış Grafiği' }
+        },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // Menü öğelerinin aktif durumunu değiştirme
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelector('.menu-item.active').classList.remove('active');
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
